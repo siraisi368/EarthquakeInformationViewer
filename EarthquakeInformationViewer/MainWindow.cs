@@ -35,7 +35,7 @@ namespace EarthquakeInformationViewer
         //緊急地震速報用(背景, 枠, 上部帯)
         private readonly (Color?, Color?, Color?, Color?) StartUpGeneralInfoColor = (Color.FromArgb(40, 60, 60), Color.FromArgb(47, 79, 79), null, Color.White);
 
-        private readonly (Color?, Color?, Color?, Color?) GeneralInfoColor = (Color.FromArgb(40, 60, 60), Color.FromArgb(47, 79, 79), Color.FromArgb(47, 79, 79), Color.White);
+        private readonly (Color?, Color?, Color?, Color?) GeneralInfoColor = (Color.FromArgb(40, 60, 60), Color.FromArgb(47, 79, 79), Color.FromArgb(47, 79, 79), Color.FromArgb(240, 240, 240));
 
         private readonly (Color?, Color?, Color?, Color?) PLUMForecastColor = (Color.FromArgb(0, 50, 76), Color.FromArgb(0, 80, 164), Color.FromArgb(0, 80, 164), Color.White);
 
