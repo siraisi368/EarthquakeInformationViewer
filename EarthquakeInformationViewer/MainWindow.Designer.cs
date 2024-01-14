@@ -98,31 +98,31 @@
             this.toolStripMenuItem1,
             this.toolStripMenuItem2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 98);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(111, 76);
             // 
             // 設定ToolStripMenuItem
             // 
             this.設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
-            this.設定ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.設定ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.設定ToolStripMenuItem.Text = "設定";
             this.設定ToolStripMenuItem.Click += new System.EventHandler(this.設定ToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(107, 6);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(110, 22);
             this.toolStripMenuItem1.Text = "再起動";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(110, 22);
             this.toolStripMenuItem2.Text = "終了";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 

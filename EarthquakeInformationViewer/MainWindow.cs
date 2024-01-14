@@ -132,16 +132,16 @@ namespace EarthquakeInformationViewer
             else if (Title.Contains("（警報）")) resData = "警報";
             return resData;
         }
-        private string al_flgChecker(string Title, bool eew_flg, string epicenter_Title,float mag,int deph ,string intn)
+        private string al_flgChecker(string Title, bool eew_flg, (string, string, string) Data,float mag,int deph ,string intn)
         {
             string resData = null;
             if (Title.Contains("（予報）")) 
                 resData = "予報";
             else if (Title.Contains("（警報）")) 
                 resData = "警報"; 
-            if (epicenter_Title.Contains("または仮定震源要素") && Title.Contains("予報") && mag == 1.0f && deph == 10) 
+            if (Data.Item1.Contains("または仮定震源要素") && Data.Item2.Contains("または仮定震源要素") && Data.Item3.Contains("または仮定震源要素") && Title.Contains("予報") && mag == 1.0f && deph == 10) 
                 resData = "PLUMF";
-            if (epicenter_Title.Contains("または仮定震源要素") && Title.Contains("警報") && mag == 1.0f && deph == 10)
+            if (Data.Item1.Contains("または仮定震源要素") && Data.Item2.Contains("または仮定震源要素") && Data.Item3.Contains("または仮定震源要素") && Title.Contains("警報") && mag == 1.0f && deph == 10)
                 resData = "PLUMW";
             if (!eew_flg) 
                 resData = null;
@@ -169,10 +169,7 @@ namespace EarthquakeInformationViewer
                 float mag = (float)eew.Magunitude;
                 int depth = eew.Depth;
                 int rpt_no = eew.Serial;
-                string al_flg = al_flgChecker(eew.Title, eew_flg, eew.Accuracy.Epicenter,mag,depth,intn);
-                al_flg = "PLUMW";
-                intn = "6強";
-                reg = "ほげほげ";
+                string al_flg = al_flgChecker(eew.Title, eew_flg, (eew.Accuracy.Epicenter, eew.Accuracy.Depth, eew.Accuracy.Magnitude),mag,depth,intn);
 
                 switch (al_flg)
                 {

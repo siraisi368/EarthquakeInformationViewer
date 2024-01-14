@@ -32,26 +32,17 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.radioButton9 = new System.Windows.Forms.RadioButton();
             this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.radioButton11 = new System.Windows.Forms.RadioButton();
+            this.radioButton10 = new System.Windows.Forms.RadioButton();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.radioButton7 = new System.Windows.Forms.RadioButton();
@@ -63,24 +54,34 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioButton10 = new System.Windows.Forms.RadioButton();
-            this.radioButton11 = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox8.SuspendLayout();
-            this.groupBox10.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -116,160 +117,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "緊急地震速報";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 26);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(705, 402);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "地震/津波情報";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.linkLabel1);
-            this.tabPage4.Controls.Add(this.groupBox4);
-            this.tabPage4.Controls.Add(this.groupBox3);
-            this.tabPage4.Location = new System.Drawing.Point(4, 26);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(705, 402);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "通知/その他";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.tabControl2);
-            this.tabPage5.Controls.Add(this.label3);
-            this.tabPage5.Controls.Add(this.pictureBox1);
-            this.tabPage5.Location = new System.Drawing.Point(4, 26);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(705, 402);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "このソフトについて";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(269, 452);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(223, 32);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "設定保存";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Bisque;
-            this.button1.Location = new System.Drawing.Point(498, 452);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(223, 32);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "キャンセル";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // tabControl2
-            // 
-            this.tabControl2.Controls.Add(this.tabPage6);
-            this.tabControl2.Controls.Add(this.tabPage7);
-            this.tabControl2.Controls.Add(this.tabPage8);
-            this.tabControl2.Location = new System.Drawing.Point(212, 89);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(480, 307);
-            this.tabControl2.TabIndex = 5;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.label4);
-            this.tabPage6.Location = new System.Drawing.Point(4, 26);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(472, 277);
-            this.tabPage6.TabIndex = 0;
-            this.tabPage6.Text = "作成協力";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Koruri Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label4.Location = new System.Drawing.Point(3, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(138, 110);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "(KMEO Rev2含め)\r\n・Eq_F.iさん\r\n・なりかくんさん\r\n・mkarakiさん\r\n・ingen084さん";
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.label5);
-            this.tabPage7.Location = new System.Drawing.Point(4, 26);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(472, 277);
-            this.tabPage7.TabIndex = 1;
-            this.tabPage7.Text = "データ提供元";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Koruri Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(3, 3);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(217, 110);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "(敬称略)\r\n・Wolfx\r\n・Kwatch24(強震モニタ24h)\r\n・なりかくん\r\n・Project DM-D.S.S(そうし)";
-            // 
-            // tabPage8
-            // 
-            this.tabPage8.Controls.Add(this.textBox1);
-            this.tabPage8.Location = new System.Drawing.Point(4, 26);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(472, 277);
-            this.tabPage8.TabIndex = 2;
-            this.tabPage8.Text = "更新履歴";
-            this.tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(3, 3);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(466, 271);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "----------------------------------Version 0.5.0 α--------------------------------" +
-    "--\r\n- 初版。\r\n- 緊急地震速報の受信・表示に対応\r\n- デバッグ用途として地図位置にテキストボックスを配置";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Koruri Regular", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(205, 6);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(500, 80);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Earthquake Information Viewer\r\nVersion 0.5.0 Alpha Develop Edition";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(4, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // groupBox8
             // 
@@ -314,6 +161,27 @@
             this.radioButton8.Text = "最終EEW";
             this.radioButton8.UseVisualStyleBackColor = true;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(705, 402);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "地震/津波情報";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.linkLabel1);
+            this.tabPage4.Controls.Add(this.groupBox4);
+            this.tabPage4.Controls.Add(this.groupBox3);
+            this.tabPage4.Location = new System.Drawing.Point(4, 26);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(705, 402);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "通知/その他";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
@@ -338,6 +206,39 @@
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "緊急地震速報・地震情報取得元/モード設定(未実装・使用不可)";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 17);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "情報取得方式：";
+            // 
+            // radioButton11
+            // 
+            this.radioButton11.AutoSize = true;
+            this.radioButton11.Enabled = false;
+            this.radioButton11.Location = new System.Drawing.Point(221, 24);
+            this.radioButton11.Name = "radioButton11";
+            this.radioButton11.Size = new System.Drawing.Size(124, 21);
+            this.radioButton11.TabIndex = 4;
+            this.radioButton11.Text = "WebSocketモード";
+            this.radioButton11.UseVisualStyleBackColor = true;
+            // 
+            // radioButton10
+            // 
+            this.radioButton10.AutoSize = true;
+            this.radioButton10.Checked = true;
+            this.radioButton10.Enabled = false;
+            this.radioButton10.Location = new System.Drawing.Point(104, 24);
+            this.radioButton10.Name = "radioButton10";
+            this.radioButton10.Size = new System.Drawing.Size(111, 21);
+            this.radioButton10.TabIndex = 3;
+            this.radioButton10.TabStop = true;
+            this.radioButton10.Text = "JSON APIモード";
+            this.radioButton10.UseVisualStyleBackColor = true;
             // 
             // groupBox7
             // 
@@ -469,57 +370,177 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "通知設定";
             // 
-            // radioButton10
+            // tabPage5
             // 
-            this.radioButton10.AutoSize = true;
-            this.radioButton10.Checked = true;
-            this.radioButton10.Enabled = false;
-            this.radioButton10.Location = new System.Drawing.Point(104, 24);
-            this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(111, 21);
-            this.radioButton10.TabIndex = 3;
-            this.radioButton10.TabStop = true;
-            this.radioButton10.Text = "JSON APIモード";
-            this.radioButton10.UseVisualStyleBackColor = true;
+            this.tabPage5.Controls.Add(this.tabControl2);
+            this.tabPage5.Controls.Add(this.label3);
+            this.tabPage5.Controls.Add(this.pictureBox1);
+            this.tabPage5.Location = new System.Drawing.Point(4, 26);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(705, 402);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "このソフトについて";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // radioButton11
+            // tabControl2
             // 
-            this.radioButton11.AutoSize = true;
-            this.radioButton11.Enabled = false;
-            this.radioButton11.Location = new System.Drawing.Point(221, 24);
-            this.radioButton11.Name = "radioButton11";
-            this.radioButton11.Size = new System.Drawing.Size(124, 21);
-            this.radioButton11.TabIndex = 4;
-            this.radioButton11.Text = "WebSocketモード";
-            this.radioButton11.UseVisualStyleBackColor = true;
+            this.tabControl2.Controls.Add(this.tabPage6);
+            this.tabControl2.Controls.Add(this.tabPage7);
+            this.tabControl2.Controls.Add(this.tabPage8);
+            this.tabControl2.Location = new System.Drawing.Point(212, 89);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(480, 307);
+            this.tabControl2.TabIndex = 5;
             // 
-            // label1
+            // tabPage6
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 17);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "情報取得方式：";
+            this.tabPage6.Controls.Add(this.label4);
+            this.tabPage6.Location = new System.Drawing.Point(4, 26);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(472, 277);
+            this.tabPage6.TabIndex = 0;
+            this.tabPage6.Text = "作成協力";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Koruri Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label4.Location = new System.Drawing.Point(3, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(138, 110);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "(KMEO Rev2含め)\r\n・Eq_F.iさん\r\n・なりかくんさん\r\n・mkarakiさん\r\n・ingen084さん";
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.label5);
+            this.tabPage7.Location = new System.Drawing.Point(4, 26);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(472, 277);
+            this.tabPage7.TabIndex = 1;
+            this.tabPage7.Text = "データ提供元";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Koruri Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label5.Location = new System.Drawing.Point(3, 3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(153, 88);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "(敬称略)\r\n・Wolfx\r\n・Project DM-D.S.S\r\n・P2P地震情報";
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.textBox1);
+            this.tabPage8.Location = new System.Drawing.Point(4, 26);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(472, 277);
+            this.tabPage8.TabIndex = 2;
+            this.tabPage8.Text = "更新履歴";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Location = new System.Drawing.Point(3, 3);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(466, 271);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = resources.GetString("textBox1.Text");
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Koruri Regular", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.Location = new System.Drawing.Point(205, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(500, 80);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Earthquake Information Viewer\r\nVersion 0.6.0 Alpha Develop Edition";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(4, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.Location = new System.Drawing.Point(269, 452);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(223, 32);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "設定保存";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Bisque;
+            this.button1.Location = new System.Drawing.Point(498, 452);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(223, 32);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "キャンセル";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 467);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(198, 17);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "EqIV - Version 0.6.0 Alpha Develop";
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(737, 496);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Koruri Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Settings";
             this.Text = "EqIV - Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabControl2.ResumeLayout(false);
@@ -530,18 +551,8 @@
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -584,5 +595,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radioButton11;
         private System.Windows.Forms.RadioButton radioButton10;
+        private System.Windows.Forms.Label label2;
     }
 }
