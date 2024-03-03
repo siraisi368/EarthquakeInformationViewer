@@ -32,38 +32,40 @@ namespace EarthquakeInformationViewer
                 tempData.Add(dp);
             }
 
-            foreach (DetailPrompt value in tempData)
+            foreach (var value in tempData.Select((value,index)=> new {value,index}))
             {
                 if (tempData.Count == 1)
                 {
                     dp = new DetailPrompt()
                     {
-                        Area = value.Area,
-                        AreaMaxIntn = value.AreaMaxIntn
+                        Area = value.value.Area,
+                        AreaMaxIntn = value.value.AreaMaxIntn
                     };
                     respData.Add(dp);
                     return respData;
                 }
-                if(area == "" || area != value.Area)
+                if(area == "" || area != value.value.Area)
                 {
-                    if(area != value.Area && area != "" && maxint != 0)
+                    area = value.value.Area;
+                    maxint = value.value.AreaMaxIntn;
+                }
+                else if(area == value.value.Area)
+                { 
+                    if(value.value.AreaMaxIntn > maxint)
                     {
-                        dp = new DetailPrompt()
-                        {
-                            Area = area,
-                            AreaMaxIntn = maxint
-                        };
+                        maxint = value.value.AreaMaxIntn;
+                    }
+                }
+                try
+                {
+                    if (tempData[value.index+1].Area != value.value.Area)
+                    {
                         respData.Add(dp);
                     }
-                    area = value.Area;
-                    maxint = value.AreaMaxIntn;
                 }
-                else if(area == value.Area)
-                { 
-                    if(value.AreaMaxIntn > maxint)
-                    {
-                        maxint = value.AreaMaxIntn;
-                    }
+                catch
+                {
+                    respData.Add(dp);
                 }
             }
             return respData;
