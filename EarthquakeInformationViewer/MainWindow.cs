@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Text;
-using System.Linq;
+using System.IO;
 using System.Net.Http;
-using System.Reflection.Emit;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace EarthquakeInformationViewer
 {
@@ -24,11 +22,11 @@ namespace EarthquakeInformationViewer
 
         private readonly Font StatusFont = new Font("Koruri Light", 20);    // 状態表示用フォント
         private readonly Font EnglishStatusFont = new Font("Koruri Light", 15);   // 英文状態表示用フォント
-        private readonly Font AlertTypeFont = new Font("Koruri Regular", 12); // 速報情報 報版表示用フォント
-        private readonly Font RegionFont = new Font("Koruri Regular", 15); // 地域表示用フォント
-        private readonly Font DetailLabelFont = new Font("Koruri Regular", 8);  // 震度、マグニチュード、深さ情報 接頭語、単位表示用フォント
-        private readonly Font DetailFont = new Font("Koruri Light", 20);   // マグニチュード、深さ情報 表示用フォント
-        private readonly Font IntensityFont = new Font("Koruri Light", 22);   // 震度表示用フォント
+        private readonly Font AlertTypeFont = new Font("Koruri Regular", 15); // 速報情報 報版表示用フォント
+        private readonly Font RegionFont = new Font("Koruri Regular", 20); // 地域表示用フォント
+        private readonly Font DetailLabelFont = new Font("Koruri Regular", 11);  // 震度、マグニチュード、深さ情報 接頭語、単位表示用フォント
+        private readonly Font DetailFont = new Font("Koruri Light", 22);   // マグニチュード、深さ情報 表示用フォント
+        private readonly Font IntensityFont = new Font("Koruri Light", 30);   // 震度表示用フォント
         private readonly Font ShindoInfoFont = new Font("Koruri Regular", 10);    //振動レベル文字
         private readonly Font SLvINFOFont = new Font("Koruri Regular", 11);    //警告文字
 
@@ -45,6 +43,121 @@ namespace EarthquakeInformationViewer
 
         private readonly (Color?, Color?, Color?, Color?) SWarningColor = (Color.FromArgb(142, 0, 130), Color.FromArgb(192, 0, 185), Color.FromArgb(192, 0, 185), Color.White);
 
+        private Dictionary<int, Color> ColorScheme = new Dictionary<int, Color>() {
+            {-1,Color.FromArgb(152,152,152)},
+            {10,Color.FromArgb(1,173,197)},
+            {20,Color.FromArgb(0,197,102)},
+            {30,Color.FromArgb(1,96,188)},
+            {40,Color.FromArgb(215,175,0)},
+            {45,Color.FromArgb(214,117,0)},
+            {46,Color.FromArgb(214,117,0)},
+            {50,Color.FromArgb(214,78,0)},
+            {55,Color.FromArgb(200, 60, 130)},
+            {60,Color.FromArgb(170, 60, 90)},
+            {70,Color.FromArgb(121,40,150)},
+        };
+
+        int Ycenter = -2600;
+        int Xcenter = -2400;
+        double CenterLon = 30*0.8f;
+        double CenterLat = 130;
+        double Zoom = 31;
+
+        public List<P2PQuake.DetailPrompt> detailPrompts = new List<P2PQuake.DetailPrompt>();
+
+        JObject geojson_dataEq;
+
+        private void WriteMapToDisplay(List<P2PQuake.DetailPrompt> prompts)
+        {
+            label1.Text = Xcenter.ToString();
+            label3.Text = Ycenter.ToString();
+            label4.Text = Zoom.ToString();
+            label5.Text = CenterLon.ToString();
+            label6.Text = CenterLat.ToString();
+
+            Bitmap canvas = new Bitmap(MapBox.Width, MapBox.Height);
+            using (Graphics g = Graphics.FromImage(canvas))
+            {
+                g.Clear(Color.FromArgb(0, 27, 59));
+                g.SmoothingMode = SmoothingMode.HighQuality;
+
+                foreach (JToken json_1 in geojson_dataEq.SelectToken("features"))
+                {
+                    GraphicsPath Maps = new GraphicsPath();
+                    Maps.StartFigure();
+                    if ((string)json_1.SelectToken("geometry.type") == "Polygon")
+                    {
+                        List<Point> points = new List<Point>();
+                        foreach (JToken json_2 in json_1.SelectToken($"geometry.coordinates[0]"))
+                        {
+                            double x = (double)json_2.SelectToken("[0]");
+                            double y = (double)json_2.SelectToken("[1]");
+                            int px = (int)((((x*0.8f) - CenterLon) * Zoom) + Xcenter);
+                            int py = (int)(((CenterLat - y) * Zoom) + Ycenter);
+
+                            Point point = new Point(px, py);
+                            points.Add(point);
+                        }
+                        if (points.Count > 2)
+                        {
+                            Maps.AddPolygon(points.ToArray());
+                        }
+                    }
+                    else
+                    {
+                        JToken coordinatesToken = json_1.SelectToken("$.geometry.coordinates");
+                        if (coordinatesToken != null)
+                        {
+                            foreach (JToken json_2 in coordinatesToken)
+                            {
+                                List<Point> points = new List<Point>();
+                                foreach (JToken json_3 in json_2.SelectToken($"[0]"))
+                                {
+                                    double x = (double)json_3.SelectToken("[0]");
+                                    double y = (double)json_3.SelectToken("[1]");
+                                    int px = (int)((((x * 0.8f) - CenterLon) * Zoom) + Xcenter);
+                                    int py = (int)(((CenterLat - y) * Zoom) + Ycenter);
+                                    Point point = new Point(px, py);
+                                    points.Add(point);
+                                }
+                                if (points.Count > 2)
+                                {
+                                    Maps.AddPolygon(points.ToArray());
+                                }
+                            }
+                        }
+                    }
+                    bool flg = false;
+                    foreach(P2PQuake.DetailPrompt dp in detailPrompts)
+                    {
+                        if (((string)json_1.SelectToken("properties.name")) == dp.Area)
+                        {
+                            g.FillPath(new SolidBrush(ColorScheme[dp.AreaMaxIntn]),Maps);
+                            flg = true;
+                            break;
+                        }
+                    }
+                    if (!flg)
+                    {
+                        g.FillPath(new SolidBrush(Color.FromArgb(38,38,38)), Maps);
+                    }
+                    
+
+                    using (Pen pen = new Pen(Color.White, 1))
+                    {
+                        pen.LineJoin = LineJoin.Round;
+                        pen.StartCap = LineCap.Round;
+                        pen.EndCap = LineCap.Round;
+
+                        Point startPoint = new Point(10, 10);
+                        Point endPoint = new Point(100, 100);
+
+                        g.DrawPath(pen, Maps);
+                    }
+                    MapBox.Image = canvas;
+                }
+            }
+        }
         private void WriteInformationToDisplay((Color?, Color?, Color?, Color?) InfoColorSchemes, (string, string)? status = null, string primarydata = null, string region = null, string intensity = null, float? magnitude = null, int? depthKm = null, string al_flg = null, int? rpt_num = 0, (string, string)? otherInfo = null)
         {
             Brush foreColor = new SolidBrush(InfoColorSchemes.Item4.Value);
@@ -55,15 +168,15 @@ namespace EarthquakeInformationViewer
 
                 if (InfoColorSchemes.Item1.HasValue)
                     using (SolidBrush b = new SolidBrush(InfoColorSchemes.Item1.Value))
-                        g.FillRectangle(b, 0, 0, 230, 85); //文字部分
+                        g.FillRectangle(b, 0, 0, 300, 120); //文字部分
 
                 if (InfoColorSchemes.Item2.HasValue)
                     using (Pen p = new Pen(InfoColorSchemes.Item2.Value, 3))
-                        g.DrawRectangle(p, 1, 1, 227, 82); //枠1
+                        g.DrawRectangle(p, 1, 1, 297, 117); //枠1
 
                 if (InfoColorSchemes.Item3.HasValue)
                     using (SolidBrush b2 = new SolidBrush(InfoColorSchemes.Item3.Value))
-                        g.FillRectangle(b2, 0, 0, 230, 20); //枠2
+                        g.FillRectangle(b2, 0, 0, 300, 28); //枠2
 
                 if (status != null)
                 {
@@ -75,27 +188,27 @@ namespace EarthquakeInformationViewer
                     if (primarydata != null)
                         g.DrawString(primarydata, AlertTypeFont, foreColor, 0, 0);
                     if (region != null)
-                        g.DrawString(region, RegionFont, foreColor, 0, 20);
+                        g.DrawString(region, RegionFont, foreColor, 0, 30);
                     if (intensity != null)
                     {
-                        g.DrawString("震度", DetailLabelFont, foreColor, 3, 67);
-                        g.DrawString(intensity, IntensityFont, foreColor, 23, 45);
+                        g.DrawString("震度", DetailLabelFont, foreColor, 3, 97);
+                        g.DrawString(intensity, IntensityFont, foreColor, 30, 67);
                     }
                     if (otherInfo != null)
                     {
-                        g.DrawString(otherInfo.Value.Item1, AlertTypeFont, foreColor, 110, 45);
-                        g.DrawString(otherInfo.Value.Item2, AlertTypeFont, foreColor, 110, 60);
+                        g.DrawString(otherInfo.Value.Item1, AlertTypeFont, foreColor, 150, 70);
+                        g.DrawString(otherInfo.Value.Item2, AlertTypeFont, foreColor, 150, 90);
                     }
                     if (magnitude != null && magnitude != -1)
                     {
-                        g.DrawString("M", DetailLabelFont, foreColor, 85, 67);
-                        g.DrawString(string.Format("{0:F1}", magnitude), DetailFont, foreColor, 95, 50);
+                        g.DrawString("M", DetailLabelFont, foreColor, 120, 97);
+                        g.DrawString(string.Format("{0:F1}", magnitude), DetailFont, foreColor, 133, 81);
                     }
                     if (depthKm != null && depthKm != -1)
                     {
-                        g.DrawString("深さ", DetailLabelFont, foreColor, 140, 67);
-                        g.DrawString(depthKm.ToString(), DetailFont, foreColor, 160, 50);
-                        g.DrawString("km", DetailLabelFont, foreColor, 205, 67);
+                        g.DrawString("深さ", DetailLabelFont, foreColor, 180, 97);
+                        g.DrawString(depthKm.ToString(), DetailFont, foreColor, 210, 81);
+                        g.DrawString("km", DetailLabelFont, foreColor, 265, 97);
                     }
                 }
             }
@@ -226,15 +339,79 @@ namespace EarthquakeInformationViewer
             await Task.Delay(10);
             EEW_Timer.Enabled = true;
         }
+        private readonly HttpClient EqClient = new HttpClient();
+        public P2PQuake.P2PEqAPI lastdata = new P2PQuake.P2PEqAPI();
+        private async void P2PQTimer_Tick(object sender, EventArgs e)
+        {
+            P2PQTimer.Interval = 10000;
+            P2PQuake p2p = new P2PQuake();
+            var url = "https://api.p2pquake.net/v2/history?codes=551&limit=1";
+            //url = "https://api.p2pquake.net/v2/jma/quake?limit=1&min_scale=60&quake_type=DetailScale";
+            var json = await client.GetStringAsync(url); //awaitを用いた非同期JSON取得
+            var eqAPI = JsonConvert.DeserializeObject<List<P2PQuake.P2PEqAPI>>(json);//EEWクラスを用いてJSONを解析(デシリアライズ)
+            if (eqAPI[0].id == lastdata.id) return;
+            else lastdata = eqAPI[0];
+            if (eqAPI[0].issue.type != "DetailScale") return;
+
+            detailPrompts = p2p.ConvertDetailToPrompt(eqAPI[0]);
+            textBox2.Text = "";
+            foreach (P2PQuake.DetailPrompt detail in p2p.ConvertDetailToPrompt(eqAPI[0]))
+            {
+                textBox2.AppendText($"{detail.Area} 震度{p2p.IntenToShindo(detail.AreaMaxIntn)}\r\n");
+            }
+            WriteMapToDisplay(detailPrompts);
+        }
+
+        private void MapBox_MouseWheel(object sender, MouseEventArgs e)
+        {
+            {
+                double currentZoom = Zoom;
+
+                int mouseX = e.X;
+                int mouseY = e.Y;
+
+                double zoomX = (mouseX - Xcenter) / currentZoom;
+                double zoomY = (mouseY - Ycenter) / currentZoom;
+
+                double zoomFactor = e.Delta > 0 ? 1.2 : 0.8;
+
+                double newZoom = Zoom * zoomFactor;
+
+                if (newZoom < 5.0)
+                {
+                    newZoom = 5.0;
+                }
+                else if (newZoom > 400.0)
+                {
+                    newZoom = 400.0;
+                }
+                int newMouseX = (int)(zoomX * newZoom + Xcenter);
+                int newMouseY = (int)(zoomY * newZoom + Ycenter);
+
+                Xcenter += mouseX - newMouseX;
+                Ycenter += mouseY - newMouseY;
+
+                Zoom = newZoom;
+            }
+            WriteMapToDisplay(detailPrompts);
+        }
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            MapBox.MouseWheel += new MouseEventHandler(MapBox_MouseWheel);
             this.Location = Properties.Settings.Default.main;
-            this.MaximizeBox = false;
-            this.MaximumSize = this.Size;
-            this.MinimumSize = this.Size;
+            //this.MaximizeBox = false;
+            //this.MaximumSize = this.Size;
+            //this.MinimumSize = this.Size;
+
+            using (StreamReader sread = new StreamReader("lib/geojson/EqForeAreaData_400.json", Encoding.UTF8))
+            {
+                geojson_dataEq = JObject.Parse(sread.ReadToEnd()); // GeoJsonの文字列を引数に入れる。
+            }
 
             WriteInformationToDisplay(StartUpGeneralInfoColor, ("接続中", "Now Loading..."));
+            WriteMapToDisplay(detailPrompts);
+            EEW_Timer.Enabled = true;
         }
 
         private void 設定ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -258,5 +435,50 @@ namespace EarthquakeInformationViewer
         {
             this.Close();
         }
+        private bool isDragging;
+        private Point lastMousePosition;
+        private void MapBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                isDragging = true;
+                lastMousePosition = e.Location;
+                timer1.Enabled = true;
+            }
+        }
+
+        private void MapBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                int deltaX = e.X - lastMousePosition.X;
+                int deltaY = e.Y - lastMousePosition.Y;
+
+                Xcenter += deltaX;
+                Ycenter += deltaY;
+
+                lastMousePosition = e.Location;
+            }
+        }
+
+        private void MapBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                isDragging = false;
+                timer1.Enabled = false;
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            WriteMapToDisplay(detailPrompts);
+        }
+
+        private void MapBox_Paint(object sender, PaintEventArgs e)
+        {
+            WriteMapToDisplay(detailPrompts);
+        }
+
     }
 }
