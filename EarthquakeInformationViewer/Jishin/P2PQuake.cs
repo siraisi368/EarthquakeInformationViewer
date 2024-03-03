@@ -60,7 +60,7 @@ namespace EarthquakeInformationViewer
                 }
                 else if(area == value.Area)
                 { 
-                    if(value.AreaMaxIntn >= maxint)
+                    if(value.AreaMaxIntn > maxint)
                     {
                         maxint = value.AreaMaxIntn;
                     }

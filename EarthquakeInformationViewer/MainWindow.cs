@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EarthquakeInformationViewer.Tsunami;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -66,7 +67,7 @@ namespace EarthquakeInformationViewer
         public List<P2PQuake.DetailPrompt> detailPrompts = new List<P2PQuake.DetailPrompt>();
 
         JObject geojson_dataEq;
-
+        JObject geojson_dataTsu;
         private void WriteMapToDisplay(List<P2PQuake.DetailPrompt> prompts)
         {
             label1.Text = Xcenter.ToString();
@@ -354,12 +355,22 @@ namespace EarthquakeInformationViewer
             if (eqAPI[0].issue.type != "DetailScale") return;
 
             detailPrompts = p2p.ConvertDetailToPrompt(eqAPI[0]);
+            textBox3.Text = json;
             textBox2.Text = "";
             foreach (P2PQuake.DetailPrompt detail in p2p.ConvertDetailToPrompt(eqAPI[0]))
             {
                 textBox2.AppendText($"{detail.Area} 震度{p2p.IntenToShindo(detail.AreaMaxIntn)}\r\n");
             }
             WriteMapToDisplay(detailPrompts);
+        }
+
+        private async void P2PTsuTimer_Tick(object sender, EventArgs e)
+        {
+            P2PTsuTimer.Interval = 30000;
+            var url = "https://api.p2pquake.net/v2/history?codes=551&limit=1";
+            var json = await client.GetStringAsync(url); //awaitを用いた非同期JSON取得
+            var tsuAPI = JsonConvert.DeserializeObject<List<P2PTsunami>>(json);
+
         }
 
         private void MapBox_MouseWheel(object sender, MouseEventArgs e)
@@ -407,6 +418,11 @@ namespace EarthquakeInformationViewer
             using (StreamReader sread = new StreamReader("lib/geojson/EqForeAreaData_400.json", Encoding.UTF8))
             {
                 geojson_dataEq = JObject.Parse(sread.ReadToEnd()); // GeoJsonの文字列を引数に入れる。
+            }
+
+            using (StreamReader sread = new StreamReader("lib/geojson/TsuForeAreaData.json", Encoding.UTF8))
+            {
+                geojson_dataTsu = JObject.Parse(sread.ReadToEnd()); // GeoJsonの文字列を引数に入れる。
             }
 
             WriteInformationToDisplay(StartUpGeneralInfoColor, ("接続中", "Now Loading..."));
@@ -480,5 +496,10 @@ namespace EarthquakeInformationViewer
             WriteMapToDisplay(detailPrompts);
         }
 
+        private void MapBox_SizeChanged(object sender, EventArgs e)
+        {
+            WriteMapToDisplay(detailPrompts);
+
+        }
     }
 }

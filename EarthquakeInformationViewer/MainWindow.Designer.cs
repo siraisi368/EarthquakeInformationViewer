@@ -49,6 +49,7 @@
             this.P2PQTimer = new System.Windows.Forms.Timer(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.P2PTsuTimer = new System.Windows.Forms.Timer(this.components);
+            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.MapBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InformationDialog)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -68,6 +69,7 @@
             this.MapBox.Size = new System.Drawing.Size(785, 595);
             this.MapBox.TabIndex = 0;
             this.MapBox.TabStop = false;
+            this.MapBox.SizeChanged += new System.EventHandler(this.MapBox_SizeChanged);
             this.MapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapBox_MouseDown);
             this.MapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapBox_MouseMove);
             this.MapBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MapBox_MouseUp);
@@ -198,16 +200,26 @@
             // textBox2
             // 
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(433, 0);
+            this.textBox2.Location = new System.Drawing.Point(433, 147);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(352, 283);
+            this.textBox2.Size = new System.Drawing.Size(352, 137);
             this.textBox2.TabIndex = 11;
             // 
             // P2PTsuTimer
             // 
             this.P2PTsuTimer.Enabled = true;
             this.P2PTsuTimer.Interval = 30000;
+            this.P2PTsuTimer.Tick += new System.EventHandler(this.P2PTsuTimer_Tick);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox3.Location = new System.Drawing.Point(433, 0);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(352, 148);
+            this.textBox3.TabIndex = 12;
             // 
             // MainWindow
             // 
@@ -215,6 +227,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(785, 595);
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -259,6 +272,7 @@
         private System.Windows.Forms.Timer P2PQTimer;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Timer P2PTsuTimer;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 
