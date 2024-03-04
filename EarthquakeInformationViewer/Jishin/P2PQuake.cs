@@ -21,53 +21,33 @@ namespace EarthquakeInformationViewer
             List<DetailPrompt> tempData = new List<DetailPrompt>();
             int maxint = 0;
             string area = "";
-            DetailPrompt dp = new DetailPrompt();
+            DetailPrompt dp_resp = new DetailPrompt();
+            Dictionary<string, List<int>> dp_temp = new Dictionary<string, List<int>>();
 
-            foreach(Point point in DetailData.points)
+            foreach (Point point in DetailData.points)
             {
-                dp = new DetailPrompt() {
-                    Area = ConvertCityToArea(point),
-                    AreaMaxIntn = point.scale,
+                if (dp_temp.ContainsKey(ConvertCityToArea(point)))
+                {
+                    dp_temp[ConvertCityToArea(point)].Add(point.scale);
+                }
+                else
+                {
+                    dp_temp.Add(ConvertCityToArea(point), new List<int>());
+                    dp_temp[ConvertCityToArea(point)].Add(point.scale);
+                }
+            }
+
+            foreach(KeyValuePair<string, List<int>> value in dp_temp)
+            {
+                int AreaMaxIntn = value.Value.Max();
+                DetailPrompt dp = new DetailPrompt()
+                {
+                    Area = value.Key,
+                    AreaMaxIntn = AreaMaxIntn,
                 };
-                tempData.Add(dp);
+                respData.Add(dp);
             }
 
-            foreach (var value in tempData.Select((value,index)=> new {value,index}))
-            {
-                if (tempData.Count == 1)
-                {
-                    dp = new DetailPrompt()
-                    {
-                        Area = value.value.Area,
-                        AreaMaxIntn = value.value.AreaMaxIntn
-                    };
-                    respData.Add(dp);
-                    return respData;
-                }
-                if(area == "" || area != value.value.Area)
-                {
-                    area = value.value.Area;
-                    maxint = value.value.AreaMaxIntn;
-                }
-                else if(area == value.value.Area)
-                { 
-                    if(value.value.AreaMaxIntn > maxint)
-                    {
-                        maxint = value.value.AreaMaxIntn;
-                    }
-                }
-                try
-                {
-                    if (tempData[value.index+1].Area != value.value.Area)
-                    {
-                        respData.Add(dp);
-                    }
-                }
-                catch
-                {
-                    respData.Add(dp);
-                }
-            }
             return respData;
         }
 
