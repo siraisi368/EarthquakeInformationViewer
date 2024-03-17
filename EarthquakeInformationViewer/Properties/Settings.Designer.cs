@@ -74,12 +74,48 @@ namespace EarthquakeInformationViewer.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool eew_lastada {
+        public bool eew_lastada_taiki {
             get {
-                return ((bool)(this["eew_lastada"]));
+                return ((bool)(this["eew_lastada_taiki"]));
             }
             set {
-                this["eew_lastada"] = value;
+                this["eew_lastada_taiki"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool jushin_taiki {
+            get {
+                return ((bool)(this["jushin_taiki"]));
+            }
+            set {
+                this["jushin_taiki"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eqinfor_taiki {
+            get {
+                return ((bool)(this["eqinfor_taiki"]));
+            }
+            set {
+                this["eqinfor_taiki"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool is_eqcolor {
+            get {
+                return ((bool)(this["is_eqcolor"]));
+            }
+            set {
+                this["is_eqcolor"] = value;
             }
         }
     }

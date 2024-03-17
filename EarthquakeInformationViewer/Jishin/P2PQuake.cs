@@ -15,7 +15,7 @@ namespace EarthquakeInformationViewer
             public int AreaMaxIntn { get; set; }
         }
 
-        public List<DetailPrompt> ConvertDetailToPrompt(P2PEqAPI DetailData)
+        public List<DetailPrompt> ConvertDetailToPrompt(P2PEqAPI DetailData,bool is_sprompt = false)
         {
             List<DetailPrompt> respData = new List<DetailPrompt>();
             List<DetailPrompt> tempData = new List<DetailPrompt>();
@@ -23,6 +23,19 @@ namespace EarthquakeInformationViewer
             string area = "";
             DetailPrompt dp_resp = new DetailPrompt();
             Dictionary<string, List<int>> dp_temp = new Dictionary<string, List<int>>();
+            
+            if (is_sprompt)
+            {
+                foreach(Point value in DetailData.points)
+                {
+                    DetailPrompt dp = new DetailPrompt() { 
+                        Area = value.addr,
+                        AreaMaxIntn = value.scale
+                    };
+                    respData.Add(dp);
+                }
+                return respData;
+            }
 
             foreach (Point point in DetailData.points)
             {

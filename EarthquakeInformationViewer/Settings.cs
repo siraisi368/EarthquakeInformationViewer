@@ -19,7 +19,10 @@ namespace EarthquakeInformationViewer
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.eew_lastada = radioButton8.Checked;
+            Properties.Settings.Default.eew_lastada_taiki = radioButton8.Checked;
+            Properties.Settings.Default.jushin_taiki = radioButton9.Checked;
+            Properties.Settings.Default.eqinfor_taiki = radioButton12.Checked;
+            Properties.Settings.Default.is_eqcolor = checkBox1.Checked;
 
             this.Close();
         }
@@ -31,7 +34,10 @@ namespace EarthquakeInformationViewer
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            radioButton8.Checked = Properties.Settings.Default.eew_lastada;
+            radioButton8.Checked = Properties.Settings.Default.eew_lastada_taiki;
+            radioButton9.Checked = Properties.Settings.Default.jushin_taiki;
+            radioButton12.Checked = Properties.Settings.Default.eqinfor_taiki;
+            checkBox1.Checked = Properties.Settings.Default.is_eqcolor;
         }
     }
 }

@@ -6,11 +6,13 @@ using System.Drawing.Text;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EarthquakeInformationViewer.Tsunami;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Windows.Graphics.Display;
 
 namespace EarthquakeInformationViewer
 {
@@ -44,19 +46,23 @@ namespace EarthquakeInformationViewer
 
         private readonly (Color?, Color?, Color?, Color?) SWarningColor = (Color.FromArgb(142, 0, 130), Color.FromArgb(192, 0, 185), Color.FromArgb(192, 0, 185), Color.White);
 
-        private Dictionary<int, Color> ColorScheme = new Dictionary<int, Color>() {
-            {-1,Color.FromArgb(152,152,152)},
-            {10,Color.FromArgb(1,173,197)},
-            {20,Color.FromArgb(0,197,102)},
-            {30,Color.FromArgb(1,96,188)},
-            {40,Color.FromArgb(215,175,0)},
-            {45,Color.FromArgb(214,117,0)},
-            {46,Color.FromArgb(214,117,0)},
-            {50,Color.FromArgb(214,78,0)},
-            {55,Color.FromArgb(200, 60, 130)},
-            {60,Color.FromArgb(170, 60, 90)},
-            {70,Color.FromArgb(121,40,150)},
+        //地震情報別カラー(背景, 枠, 上部枠, 文字色)
+        private Dictionary<int, (Color,Color,Color,Color)> ColorScheme = new Dictionary<int, (Color,Color,Color,Color)>() {
+            {-1,(Color.FromArgb(132,132,132),Color.FromArgb(152,152,152),Color.FromArgb(152,152,152),Color.White)},
+            {10,(Color.FromArgb(0, 133, 157),Color.FromArgb(1,173,197),Color.FromArgb(1,173,197),Color.White)},
+            {20,(Color.FromArgb(40, 107, 12), Color.FromArgb(0,197,102),Color.FromArgb(0,197,102),Color.White)},
+            {30,(Color.FromArgb(0, 36, 108), Color.FromArgb(1, 96, 188),Color.FromArgb(1, 96, 188),Color.White)},
+            {40,(Color.FromArgb(175, 135, 0), Color.FromArgb(215, 175, 0),Color.FromArgb(215, 175, 0),Color.White)},
+            {45,(Color.FromArgb(184, 87, 0), Color.FromArgb(214, 117, 0),Color.FromArgb(214, 117, 0),Color.White)},
+            {46,(Color.FromArgb(184, 87, 0), Color.FromArgb(214, 117, 0),Color.FromArgb(214, 117, 0),Color.White)},
+            {50,(Color.FromArgb(184, 68, 0), Color.FromArgb(214, 78, 0),Color.FromArgb(214, 78, 0),Color.White)},
+            {55,(Color.FromArgb(170, 30, 100), Color.FromArgb(200, 60, 130),Color.FromArgb(200, 60, 130),Color.White)},
+            {60,(Color.FromArgb(140, 30, 60), Color.FromArgb(170, 60, 90),Color.FromArgb(170, 60, 90),Color.White)},
+            {70,(Color.FromArgb(101, 20, 130), Color.FromArgb(121, 40, 150),Color.FromArgb(121, 40, 150),Color.White)},
         };
+
+        Image EpicenterImg;
+        public P2PQuake.P2PEqAPI lastdata = new P2PQuake.P2PEqAPI();
 
         int Ycenter = -2600;
         int Xcenter = -2400;
@@ -129,11 +135,11 @@ namespace EarthquakeInformationViewer
                         }
                     }
                     bool flg = false;
-                    foreach(P2PQuake.DetailPrompt dp in detailPrompts)
+                    foreach(P2PQuake.DetailPrompt dp in prompts)
                     {
                         if (((string)json_1.SelectToken("properties.name")) == dp.Area)
                         {
-                            g.FillPath(new SolidBrush(ColorScheme[dp.AreaMaxIntn]),Maps);
+                            g.FillPath(new SolidBrush(ColorScheme[dp.AreaMaxIntn].Item2),Maps);
                             flg = true;
                             break;
                         }
@@ -155,12 +161,33 @@ namespace EarthquakeInformationViewer
 
                         g.DrawPath(pen, Maps);
                     }
+
+                    if(lastdata.id != null)
+                    {
+                        int EpiX = (int)((lastdata.earthquake.hypocenter.longitude * 0.8 - CenterLon) * Zoom) + Xcenter;
+                        int EpiY = (int)((CenterLat - lastdata.earthquake.hypocenter.latitude) * Zoom) + Ycenter;
+                        int rectWidth = EpicenterImg.Width;
+                        int rectHeight = EpicenterImg.Height;
+                        int rectX = EpiX - rectWidth / 2;
+                        int rectY = EpiY - rectHeight / 2;
+
+                        g.DrawImage(EpicenterImg, rectX, rectY);
+                    }
                     MapBox.Image = canvas;
                 }
             }
         }
         private void WriteInformationToDisplay((Color?, Color?, Color?, Color?) InfoColorSchemes, (string, string)? status = null, string primarydata = null, string region = null, string intensity = null, float? magnitude = null, int? depthKm = null, string al_flg = null, int? rpt_num = 0, (string, string)? otherInfo = null)
         {
+            StringFormat CenterRight = new StringFormat() { 
+                Alignment = StringAlignment.Far,
+                LineAlignment = StringAlignment.Center
+            };
+            StringFormat CenterCenter = new StringFormat()
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
             Brush foreColor = new SolidBrush(InfoColorSchemes.Item4.Value);
             Bitmap canvas = new Bitmap(InformationDialog.Width, InformationDialog.Height);
             using (Graphics g = Graphics.FromImage(canvas))
@@ -193,7 +220,7 @@ namespace EarthquakeInformationViewer
                     if (intensity != null)
                     {
                         g.DrawString("震度", DetailLabelFont, foreColor, 3, 97);
-                        g.DrawString(intensity, IntensityFont, foreColor, 30, 67);
+                        g.DrawString(intensity, IntensityFont, foreColor, 79, 100,CenterCenter);
                     }
                     if (otherInfo != null)
                     {
@@ -203,12 +230,12 @@ namespace EarthquakeInformationViewer
                     if (magnitude != null && magnitude != -1)
                     {
                         g.DrawString("M", DetailLabelFont, foreColor, 120, 97);
-                        g.DrawString(string.Format("{0:F1}", magnitude), DetailFont, foreColor, 133, 81);
+                        g.DrawString(string.Format("{0:F1}", magnitude), DetailFont, foreColor, 185, 103,CenterRight);
                     }
                     if (depthKm != null && depthKm != -1)
                     {
                         g.DrawString("深さ", DetailLabelFont, foreColor, 180, 97);
-                        g.DrawString(depthKm.ToString(), DetailFont, foreColor, 210, 81);
+                        g.DrawString(depthKm.ToString(), DetailFont, foreColor, 270, 103,CenterRight);
                         g.DrawString("km", DetailLabelFont, foreColor, 265, 97);
                     }
                 }
@@ -263,7 +290,7 @@ namespace EarthquakeInformationViewer
         }
 
         private readonly HttpClient client = new HttpClient();
-
+        private bool eew_flg = false;
         private async void EEW_Timer_Tick(object sender, EventArgs e)
         {
             this.label2.Text = DateTime.Now.ToString("yyyy/dd/MM HH:mm:ss");
@@ -278,7 +305,7 @@ namespace EarthquakeInformationViewer
                 string reg = eew.Hypocenter;
                 string intn = eew.MaxIntensity;
                 bool end_flg = eew.isFinal;
-                bool eew_flg = is_eewflg(eew.AnnouncedTime, true);
+                eew_flg = is_eewflg(eew.AnnouncedTime, true);
                 string eew_id = eew.EventID;
                 float mag = (float)eew.Magunitude;
                 int depth = eew.Depth;
@@ -322,10 +349,14 @@ namespace EarthquakeInformationViewer
 
                     case null:
                         //Program.LastEewResult = EewResult.None;
-                        if (Properties.Settings.Default.eew_lastada == false)
+                        if (Properties.Settings.Default.jushin_taiki)
                             WriteInformationToDisplay(StartUpGeneralInfoColor, ("受信待機中", "No Data..."));
-                        else
+                        if(Properties.Settings.Default.eew_lastada_taiki)
                             WriteInformationToDisplay(GeneralInfoColor, null, $"EEWを受信していません。", reg, intn, mag, depth);
+                        if (Properties.Settings.Default.eqinfor_taiki)
+                        {
+                            return;
+                        }
                         break;
                 }
             }
@@ -341,23 +372,38 @@ namespace EarthquakeInformationViewer
             EEW_Timer.Enabled = true;
         }
         private readonly HttpClient EqClient = new HttpClient();
-        public P2PQuake.P2PEqAPI lastdata = new P2PQuake.P2PEqAPI();
+        
         private async void P2PQTimer_Tick(object sender, EventArgs e)
         {
             P2PQTimer.Interval = 10000;
             P2PQuake p2p = new P2PQuake();
             var url = "https://api.p2pquake.net/v2/history?codes=551&limit=1";
             //url = "https://api.p2pquake.net/v2/jma/quake?limit=1&min_scale=60&quake_type=DetailScale";
-            var json = await client.GetStringAsync(url); //awaitを用いた非同期JSON取得
+            var json = await EqClient.GetStringAsync(url); //awaitを用いた非同期JSON取得
             var eqAPI = JsonConvert.DeserializeObject<List<P2PQuake.P2PEqAPI>>(json);//EEWクラスを用いてJSONを解析(デシリアライズ)
+
+            if (Properties.Settings.Default.eqinfor_taiki && eew_flg == false)
+            {
+                if (Properties.Settings.Default.is_eqcolor)
+                {
+                    WriteInformationToDisplay(ColorScheme[eqAPI[0].earthquake.maxScale], null, $"{eqAPI[0].earthquake.time}発生", eqAPI[0].earthquake.hypocenter.name, p2p.IntenToShindo(eqAPI[0].earthquake.maxScale), (float)eqAPI[0].earthquake.hypocenter.magnitude, eqAPI[0].earthquake.hypocenter.depth);
+                }
+                else
+                {
+                    WriteInformationToDisplay(GeneralInfoColor, null, $"{eqAPI[0].earthquake.time}発生", eqAPI[0].earthquake.hypocenter.name, p2p.IntenToShindo(eqAPI[0].earthquake.maxScale), (float)eqAPI[0].earthquake.hypocenter.magnitude, eqAPI[0].earthquake.hypocenter.depth);
+                }
+            }
+
             if (eqAPI[0].id == lastdata.id) return;
             else lastdata = eqAPI[0];
-            if (eqAPI[0].issue.type != "DetailScale") return;
+            if (eqAPI[0].issue.type == "DetailScale")
+                detailPrompts = p2p.ConvertDetailToPrompt(eqAPI[0]);
+            if (eqAPI[0].issue.type == "ScalePrompt")
+                detailPrompts = p2p.ConvertDetailToPrompt(eqAPI[0],true);
 
-            detailPrompts = p2p.ConvertDetailToPrompt(eqAPI[0]);
             textBox3.Text = json;
             textBox2.Text = "";
-            foreach (P2PQuake.DetailPrompt detail in p2p.ConvertDetailToPrompt(eqAPI[0]))
+            foreach (P2PQuake.DetailPrompt detail in detailPrompts)
             {
                 textBox2.AppendText($"{detail.Area} 震度{p2p.IntenToShindo(detail.AreaMaxIntn)}\r\n");
             }
@@ -368,7 +414,7 @@ namespace EarthquakeInformationViewer
         {
             P2PTsuTimer.Interval = 30000;
             var url = "https://api.p2pquake.net/v2/history?codes=551&limit=1";
-            var json = await client.GetStringAsync(url); //awaitを用いた非同期JSON取得
+            var json = await EqClient.GetStringAsync(url); //awaitを用いた非同期JSON取得
             var tsuAPI = JsonConvert.DeserializeObject<List<P2PTsunami>>(json);
 
         }
@@ -423,6 +469,11 @@ namespace EarthquakeInformationViewer
             using (StreamReader sread = new StreamReader("lib/geojson/TsuForeAreaData.json", Encoding.UTF8))
             {
                 geojson_dataTsu = JObject.Parse(sread.ReadToEnd()); // GeoJsonの文字列を引数に入れる。
+            }
+
+            using (FileStream sread = new FileStream("lib/img/regmark.png",FileMode.Open))
+            {
+                EpicenterImg = Image.FromStream(sread);
             }
 
             WriteInformationToDisplay(StartUpGeneralInfoColor, ("接続中", "Now Loading..."));
@@ -500,6 +551,15 @@ namespace EarthquakeInformationViewer
         {
             WriteMapToDisplay(detailPrompts);
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            double.TryParse(textBox4.Text, out double cLon);
+            double.TryParse(textBox5.Text, out double cLat);
+            CenterLon = cLon;
+            CenterLat = cLat;
+            WriteMapToDisplay(detailPrompts);
         }
     }
 }
