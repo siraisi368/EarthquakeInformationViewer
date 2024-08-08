@@ -39,5 +39,16 @@ namespace EarthquakeInformationViewer
             radioButton12.Checked = Properties.Settings.Default.eqinfor_taiki;
             checkBox1.Checked = Properties.Settings.Default.is_eqcolor;
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            KeySettingWindow f = new KeySettingWindow();
+            f.Show();
+        }
     }
 }

@@ -12,7 +12,6 @@ using System.Windows.Forms;
 using EarthquakeInformationViewer.Tsunami;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Windows.Graphics.Display;
 
 namespace EarthquakeInformationViewer
 {
@@ -23,34 +22,34 @@ namespace EarthquakeInformationViewer
             InitializeComponent();
         }
 
-        private readonly Font StatusFont = new Font("Koruri Light", 20);    // 状態表示用フォント
-        private readonly Font EnglishStatusFont = new Font("Koruri Light", 15);   // 英文状態表示用フォント
-        private readonly Font AlertTypeFont = new Font("Koruri Regular", 15); // 速報情報 報版表示用フォント
-        private readonly Font RegionFont = new Font("Koruri Regular", 20); // 地域表示用フォント
-        private readonly Font DetailLabelFont = new Font("Koruri Regular", 11);  // 震度、マグニチュード、深さ情報 接頭語、単位表示用フォント
-        private readonly Font DetailFont = new Font("Koruri Light", 22);   // マグニチュード、深さ情報 表示用フォント
-        private readonly Font IntensityFont = new Font("Koruri Light", 30);   // 震度表示用フォント
-        private readonly Font ShindoInfoFont = new Font("Koruri Regular", 10);    //振動レベル文字
-        private readonly Font SLvINFOFont = new Font("Koruri Regular", 11);    //警告文字
+        public readonly Font StatusFont = new Font("Koruri Light", 20);    // 状態表示用フォント
+        public readonly Font EnglishStatusFont = new Font("Koruri Light", 15);   // 英文状態表示用フォント
+        public readonly Font AlertTypeFont = new Font("Koruri Regular", 15); // 速報情報 報版表示用フォント
+        public readonly Font RegionFont = new Font("Koruri Regular", 20); // 地域表示用フォント
+        public readonly Font DetailLabelFont = new Font("Koruri Regular", 11);  // 震度、マグニチュード、深さ情報 接頭語、単位表示用フォント
+        public readonly Font DetailFont = new Font("Koruri Light", 22);   // マグニチュード、深さ情報 表示用フォント
+        public readonly Font IntensityFont = new Font("Koruri Light", 30);   // 震度表示用フォント
+        public readonly Font ShindoInfoFont = new Font("Koruri Regular", 10);    //振動レベル文字
+        public readonly Font SLvINFOFont = new Font("Koruri Regular", 11);    //警告文字
 
         //緊急地震速報用(背景, 枠, 上部帯)
-        private readonly (Color?, Color?, Color?, Color?) StartUpGeneralInfoColor = (Color.FromArgb(40, 60, 60), Color.FromArgb(47, 79, 79), null, Color.White);
+        public readonly (Color?, Color?, Color?, Color?) StartUpGeneralInfoColor = (Color.FromArgb(40, 60, 60), Color.FromArgb(47, 79, 79), null, Color.White);
 
-        private readonly (Color?, Color?, Color?, Color?) GeneralInfoColor = (Color.FromArgb(40, 60, 60), Color.FromArgb(47, 79, 79), Color.FromArgb(47, 79, 79), Color.FromArgb(240, 240, 240));
+        public readonly (Color?, Color?, Color?, Color?) GeneralInfoColor = (Color.FromArgb(40, 60, 60), Color.FromArgb(47, 79, 79), Color.FromArgb(47, 79, 79), Color.FromArgb(240, 240, 240));
 
-        private readonly (Color?, Color?, Color?, Color?) PLUMForecastColor = (Color.FromArgb(0, 50, 76), Color.FromArgb(0, 80, 164), Color.FromArgb(0, 80, 164), Color.White);
+        public readonly (Color?, Color?, Color?, Color?) PLUMForecastColor = (Color.FromArgb(0, 50, 76), Color.FromArgb(0, 80, 164), Color.FromArgb(0, 80, 164), Color.White);
 
-        private readonly (Color?, Color?, Color?, Color?) ForecastColor = (Color.FromArgb(238, 195, 2), Color.FromArgb(255, 219, 0), Color.FromArgb(255, 219, 0), Color.Black);
+        public readonly (Color?, Color?, Color?, Color?) ForecastColor = (Color.FromArgb(238, 195, 2), Color.FromArgb(255, 219, 0), Color.FromArgb(255, 219, 0), Color.Black);
 
-        private readonly (Color?, Color?, Color?, Color?) WarningColor = (Color.FromArgb(142, 0, 0), Color.FromArgb(212, 0, 0), Color.FromArgb(212, 0, 0), Color.White);
+        public readonly (Color?, Color?, Color?, Color?) WarningColor = (Color.FromArgb(142, 0, 0), Color.FromArgb(212, 0, 0), Color.FromArgb(212, 0, 0), Color.White);
 
-        private readonly (Color?, Color?, Color?, Color?) SWarningColor = (Color.FromArgb(142, 0, 130), Color.FromArgb(192, 0, 185), Color.FromArgb(192, 0, 185), Color.White);
+        public readonly (Color?, Color?, Color?, Color?) SWarningColor = (Color.FromArgb(142, 0, 130), Color.FromArgb(192, 0, 185), Color.FromArgb(192, 0, 185), Color.White);
 
         //地震情報別カラー(背景, 枠, 上部枠, 文字色)
-        private Dictionary<int, (Color,Color,Color,Color)> ColorScheme = new Dictionary<int, (Color,Color,Color,Color)>() {
+        public Dictionary<int, (Color,Color,Color,Color)> ColorScheme = new Dictionary<int, (Color,Color,Color,Color)>() {
             {-1,(Color.FromArgb(132,132,132),Color.FromArgb(152,152,152),Color.FromArgb(152,152,152),Color.White)},
             {10,(Color.FromArgb(0, 133, 157),Color.FromArgb(1,173,197),Color.FromArgb(1,173,197),Color.White)},
-            {20,(Color.FromArgb(40, 107, 12), Color.FromArgb(0,197,102),Color.FromArgb(0,197,102),Color.White)},
+            {20,(Color.FromArgb(0, 168, 87), Color.FromArgb(0,197,102),Color.FromArgb(0,197,102),Color.White)},
             {30,(Color.FromArgb(0, 36, 108), Color.FromArgb(1, 96, 188),Color.FromArgb(1, 96, 188),Color.White)},
             {40,(Color.FromArgb(175, 135, 0), Color.FromArgb(215, 175, 0),Color.FromArgb(215, 175, 0),Color.White)},
             {45,(Color.FromArgb(184, 87, 0), Color.FromArgb(214, 117, 0),Color.FromArgb(214, 117, 0),Color.White)},
@@ -74,7 +73,7 @@ namespace EarthquakeInformationViewer
 
         JObject geojson_dataEq;
         JObject geojson_dataTsu;
-        private void WriteMapToDisplay(List<P2PQuake.DetailPrompt> prompts)
+        private void WriteMapToDisplay(dynamic prompts,bool is_eqinfo = true,bool is_eew = false)
         {
             label1.Text = Xcenter.ToString();
             label3.Text = Ycenter.ToString();
@@ -135,18 +134,37 @@ namespace EarthquakeInformationViewer
                         }
                     }
                     bool flg = false;
-                    foreach(P2PQuake.DetailPrompt dp in prompts)
+                    if (is_eqinfo)
                     {
-                        if (((string)json_1.SelectToken("properties.name")) == dp.Area)
+                        foreach(P2PQuake.DetailPrompt dp in prompts)
                         {
-                            g.FillPath(new SolidBrush(ColorScheme[dp.AreaMaxIntn].Item2),Maps);
-                            flg = true;
-                            break;
+                            if (((string)json_1.SelectToken("properties.name")) == dp.Area)
+                            {
+                                g.FillPath(new SolidBrush(ColorScheme[dp.AreaMaxIntn].Item2),Maps);
+                                flg = true;
+                                break;
+                            }
+                        }
+                        if (!flg)
+                        {
+                            g.FillPath(new SolidBrush(Color.FromArgb(38,38,38)), Maps);
                         }
                     }
-                    if (!flg)
+                    else if (is_eew)
                     {
-                        g.FillPath(new SolidBrush(Color.FromArgb(38,38,38)), Maps);
+                        foreach (string values in prompts)
+                        {
+                            if (((string)json_1.SelectToken("properties.name")) == values)
+                            {
+                                g.FillPath(new SolidBrush(ColorScheme[40].Item2), Maps);
+                                flg = true;
+                                break;
+                            }
+                        }
+                        if (!flg)
+                        {
+                            g.FillPath(new SolidBrush(Color.FromArgb(38, 38, 38)), Maps);
+                        }
                     }
                     
 
@@ -177,7 +195,7 @@ namespace EarthquakeInformationViewer
                 }
             }
         }
-        private void WriteInformationToDisplay((Color?, Color?, Color?, Color?) InfoColorSchemes, (string, string)? status = null, string primarydata = null, string region = null, string intensity = null, float? magnitude = null, int? depthKm = null, string al_flg = null, int? rpt_num = 0, (string, string)? otherInfo = null)
+        public void WriteInformationToDisplay((Color?, Color?, Color?, Color?) InfoColorSchemes, (string, string)? status = null, string primarydata = null, string region = null, string intensity = null, float? magnitude = null, int? depthKm = null, string al_flg = null, int? rpt_num = 0, (string, string)? otherInfo = null)
         {
             StringFormat CenterRight = new StringFormat() { 
                 Alignment = StringAlignment.Far,
@@ -293,7 +311,7 @@ namespace EarthquakeInformationViewer
         private bool eew_flg = false;
         private async void EEW_Timer_Tick(object sender, EventArgs e)
         {
-            this.label2.Text = DateTime.Now.ToString("yyyy/dd/MM HH:mm:ss");
+            this.label2.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
             try
             {
@@ -381,7 +399,7 @@ namespace EarthquakeInformationViewer
             //url = "https://api.p2pquake.net/v2/jma/quake?limit=1&min_scale=60&quake_type=DetailScale";
             var json = await EqClient.GetStringAsync(url); //awaitを用いた非同期JSON取得
             var eqAPI = JsonConvert.DeserializeObject<List<P2PQuake.P2PEqAPI>>(json);//EEWクラスを用いてJSONを解析(デシリアライズ)
-
+            
             if (Properties.Settings.Default.eqinfor_taiki && eew_flg == false)
             {
                 if (Properties.Settings.Default.is_eqcolor)

@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace EarthquakeInformationViewer
+{
+    public partial class KeySettingWindow : Form
+    {
+        public KeySettingWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void KeySettingWindow_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
