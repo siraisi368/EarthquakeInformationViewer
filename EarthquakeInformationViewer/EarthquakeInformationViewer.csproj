@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiConnecter\WebSocket.cs" />
     <Compile Include="EEW\GeneralEEWObjects.cs" />
     <Compile Include="Jishin\GeneralEqObjects.cs" />
     <Compile Include="KeySettingWindow.cs">
@@ -121,5 +122,6 @@
       <Version>13.0.3</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace EarthquakeInformationViewer
 {
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
     public class Accuracy
     {
         public string Epicenter { get; set; }

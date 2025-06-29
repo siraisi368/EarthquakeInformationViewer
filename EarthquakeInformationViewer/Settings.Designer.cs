@@ -601,9 +601,10 @@
             this.label4.Font = new System.Drawing.Font("Koruri Regular", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label4.Location = new System.Drawing.Point(3, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(138, 154);
+            this.label4.Size = new System.Drawing.Size(146, 176);
             this.label4.TabIndex = 0;
-            this.label4.Text = "(KMEO Rev2含め)\r\n・Eq_F.iさん\r\n・なりかくんさん\r\n・mkarakiさん\r\n・ingen084さん\r\n・あめうまさん\r\n・あきかきさん";
+            this.label4.Text = "(KMEO Rev2含め)\r\n・Eq_F.iさん\r\n・なりかくんさん\r\n・mkarakiさん\r\n・ingen084さん\r\n・あめうまさん\r\n・あきかきさん\r\n・T" +
+    "ochigiCamさん";
             // 
             // tabPage7
             // 

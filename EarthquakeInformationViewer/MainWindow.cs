@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EarthquakeInformationViewer
-{
+{ 
     public partial class MainWindow : Form
     {
         public MainWindow()
