@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EEW\GeneralEEWObjects.cs" />
+    <Compile Include="Jishin\GeneralEqObjects.cs" />
     <Compile Include="KeySettingWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +91,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
@@ -102,6 +105,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\KubunMarkLatLon.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

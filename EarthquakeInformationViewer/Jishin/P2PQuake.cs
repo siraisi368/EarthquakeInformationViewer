@@ -559,15 +559,15 @@ namespace EarthquakeInformationViewer
                 case 40:
                     return "４";
                 case 45:
-                    return "５弱";
+                    return "5弱";
                 case 46:
-                    return "５弱以上未入電";
+                    return "5弱以上未入電";
                 case 50:
-                    return "５強";
+                    return "5強";
                 case 55:
-                    return "６弱";
+                    return "6弱";
                 case 60:
-                    return "６強";
+                    return "6強";
                 case 70:
                     return "７";
                 default:

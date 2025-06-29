@@ -72,7 +72,6 @@
             this.MapBox.Size = new System.Drawing.Size(785, 595);
             this.MapBox.TabIndex = 0;
             this.MapBox.TabStop = false;
-            this.MapBox.SizeChanged += new System.EventHandler(this.MapBox_SizeChanged);
             this.MapBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapBox_MouseDown);
             this.MapBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MapBox_MouseMove);
             this.MapBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MapBox_MouseUp);
@@ -105,6 +104,7 @@
             this.textBox1.Location = new System.Drawing.Point(433, 283);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(352, 283);
             this.textBox1.TabIndex = 5;
             // 
@@ -206,6 +206,7 @@
             this.textBox2.Location = new System.Drawing.Point(433, 147);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(352, 137);
             this.textBox2.TabIndex = 11;
             // 
@@ -221,6 +222,7 @@
             this.textBox3.Location = new System.Drawing.Point(433, 0);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
+            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox3.Size = new System.Drawing.Size(352, 148);
             this.textBox3.TabIndex = 12;
             // 
@@ -273,6 +275,7 @@
             this.Text = "EqIV - MainWindow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.SizeChanged += new System.EventHandler(this.MainWindow_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.MapBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InformationDialog)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);

@@ -19,6 +19,11 @@ namespace EarthquakeInformationViewer
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if(radioButton18.Checked)
+            {
+                MessageBox.Show("AXIS APIを情報元として使用する場合\n\rYouTubeやその他SNSへのスクリーンショットの投稿や配信を行うことはできません。\n\r\n\r違反した場合、アカウントの停止やAXISのEEW配信自体が終了される可能性があります。", "注意",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+            }
+
             Properties.Settings.Default.eew_lastada_taiki = radioButton8.Checked;
             Properties.Settings.Default.jushin_taiki = radioButton9.Checked;
             Properties.Settings.Default.eqinfor_taiki = radioButton12.Checked;
