@@ -27,7 +27,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="InfoGetModes" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">{"is_WebSocket":false,"EarthquakeAPI":{"selectedAPI":2},"EEWAPI":{"selectedAPI":3},"TunamiAPI":{"selectedAPI":2}}</Value>
     </Setting>
   </Settings>
 </SettingsFile>

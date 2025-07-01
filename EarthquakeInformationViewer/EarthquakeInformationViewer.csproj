@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiConnecter\WebSocket.cs" />
+    <Compile Include="SettingsLosa.cs" />
     <Compile Include="EEW\GeneralEEWObjects.cs" />
     <Compile Include="Jishin\GeneralEqObjects.cs" />
     <Compile Include="KeySettingWindow.cs">

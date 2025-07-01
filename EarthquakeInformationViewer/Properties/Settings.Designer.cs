@@ -121,7 +121,8 @@ namespace EarthquakeInformationViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\"is_WebSocket\":false,\"EarthquakeAPI\":{\"selectedAPI\":2},\"EEWAPI\":{\"selectedAPI\":3" +
+            "},\"TunamiAPI\":{\"selectedAPI\":2}}")]
         public string InfoGetModes {
             get {
                 return ((string)(this["InfoGetModes"]));

@@ -54,22 +54,22 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.API_SelectsBox = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.radioButton11 = new System.Windows.Forms.RadioButton();
-            this.radioButton10 = new System.Windows.Forms.RadioButton();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.radioButton19 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.radioButton18 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.is_WebSc = new System.Windows.Forms.RadioButton();
+            this.is_JsonAPI = new System.Windows.Forms.RadioButton();
+            this.Tsunami_API_SelectBox = new System.Windows.Forms.GroupBox();
+            this.Tsu_radioButton2 = new System.Windows.Forms.RadioButton();
+            this.Tsu_radioButton1 = new System.Windows.Forms.RadioButton();
+            this.Eq_API_SelectBox = new System.Windows.Forms.GroupBox();
+            this.Eq_radioButton3 = new System.Windows.Forms.RadioButton();
+            this.Eq_radioButton2 = new System.Windows.Forms.RadioButton();
+            this.Eq_radioButton1 = new System.Windows.Forms.RadioButton();
+            this.EEW_API_SelectBox = new System.Windows.Forms.GroupBox();
+            this.EEW_radioButton4 = new System.Windows.Forms.RadioButton();
+            this.EEW_radioButton3 = new System.Windows.Forms.RadioButton();
+            this.EEW_radioButton2 = new System.Windows.Forms.RadioButton();
+            this.EEW_radioButton1 = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
@@ -93,10 +93,10 @@
             this.groupBox8.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.API_SelectsBox.SuspendLayout();
+            this.Tsunami_API_SelectBox.SuspendLayout();
+            this.Eq_API_SelectBox.SuspendLayout();
+            this.EEW_API_SelectBox.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -353,7 +353,7 @@
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.linkLabel1);
-            this.tabPage4.Controls.Add(this.groupBox4);
+            this.tabPage4.Controls.Add(this.API_SelectsBox);
             this.tabPage4.Controls.Add(this.groupBox3);
             this.tabPage4.Location = new System.Drawing.Point(4, 26);
             this.tabPage4.Name = "tabPage4";
@@ -373,20 +373,20 @@
             this.linkLabel1.Text = "DM-Data/AXISを情報元として利用する場合は、APIキーの設定が必要です。(設定はこちら)";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // groupBox4
+            // API_SelectsBox
             // 
-            this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Controls.Add(this.radioButton11);
-            this.groupBox4.Controls.Add(this.radioButton10);
-            this.groupBox4.Controls.Add(this.groupBox7);
-            this.groupBox4.Controls.Add(this.groupBox6);
-            this.groupBox4.Controls.Add(this.groupBox5);
-            this.groupBox4.Location = new System.Drawing.Point(7, 188);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(693, 190);
-            this.groupBox4.TabIndex = 4;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "緊急地震速報・地震情報取得元/モード設定(未実装・使用不可)";
+            this.API_SelectsBox.Controls.Add(this.label1);
+            this.API_SelectsBox.Controls.Add(this.is_WebSc);
+            this.API_SelectsBox.Controls.Add(this.is_JsonAPI);
+            this.API_SelectsBox.Controls.Add(this.Tsunami_API_SelectBox);
+            this.API_SelectsBox.Controls.Add(this.Eq_API_SelectBox);
+            this.API_SelectsBox.Controls.Add(this.EEW_API_SelectBox);
+            this.API_SelectsBox.Location = new System.Drawing.Point(7, 188);
+            this.API_SelectsBox.Name = "API_SelectsBox";
+            this.API_SelectsBox.Size = new System.Drawing.Size(693, 190);
+            this.API_SelectsBox.TabIndex = 4;
+            this.API_SelectsBox.TabStop = false;
+            this.API_SelectsBox.Text = "緊急地震速報・地震情報取得元/モード設定(未実装・使用不可)";
             // 
             // label1
             // 
@@ -397,160 +397,160 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "情報取得方式：";
             // 
-            // radioButton11
+            // is_WebSc
             // 
-            this.radioButton11.AutoSize = true;
-            this.radioButton11.Location = new System.Drawing.Point(221, 24);
-            this.radioButton11.Name = "radioButton11";
-            this.radioButton11.Size = new System.Drawing.Size(124, 21);
-            this.radioButton11.TabIndex = 4;
-            this.radioButton11.Text = "WebSocketモード";
-            this.radioButton11.UseVisualStyleBackColor = true;
+            this.is_WebSc.AutoSize = true;
+            this.is_WebSc.Location = new System.Drawing.Point(221, 24);
+            this.is_WebSc.Name = "is_WebSc";
+            this.is_WebSc.Size = new System.Drawing.Size(124, 21);
+            this.is_WebSc.TabIndex = 4;
+            this.is_WebSc.Text = "WebSocketモード";
+            this.is_WebSc.UseVisualStyleBackColor = true;
             // 
-            // radioButton10
+            // is_JsonAPI
             // 
-            this.radioButton10.AutoSize = true;
-            this.radioButton10.Checked = true;
-            this.radioButton10.Location = new System.Drawing.Point(104, 24);
-            this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(111, 21);
-            this.radioButton10.TabIndex = 3;
-            this.radioButton10.TabStop = true;
-            this.radioButton10.Text = "JSON APIモード";
-            this.radioButton10.UseVisualStyleBackColor = true;
+            this.is_JsonAPI.AutoSize = true;
+            this.is_JsonAPI.Checked = true;
+            this.is_JsonAPI.Location = new System.Drawing.Point(104, 24);
+            this.is_JsonAPI.Name = "is_JsonAPI";
+            this.is_JsonAPI.Size = new System.Drawing.Size(111, 21);
+            this.is_JsonAPI.TabIndex = 3;
+            this.is_JsonAPI.TabStop = true;
+            this.is_JsonAPI.Text = "JSON APIモード";
+            this.is_JsonAPI.UseVisualStyleBackColor = true;
             // 
-            // groupBox7
+            // Tsunami_API_SelectBox
             // 
-            this.groupBox7.Controls.Add(this.radioButton6);
-            this.groupBox7.Controls.Add(this.radioButton7);
-            this.groupBox7.Location = new System.Drawing.Point(476, 51);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(211, 133);
-            this.groupBox7.TabIndex = 2;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "津波情報";
+            this.Tsunami_API_SelectBox.Controls.Add(this.Tsu_radioButton2);
+            this.Tsunami_API_SelectBox.Controls.Add(this.Tsu_radioButton1);
+            this.Tsunami_API_SelectBox.Location = new System.Drawing.Point(476, 51);
+            this.Tsunami_API_SelectBox.Name = "Tsunami_API_SelectBox";
+            this.Tsunami_API_SelectBox.Size = new System.Drawing.Size(211, 133);
+            this.Tsunami_API_SelectBox.TabIndex = 2;
+            this.Tsunami_API_SelectBox.TabStop = false;
+            this.Tsunami_API_SelectBox.Text = "津波情報";
             // 
-            // radioButton6
+            // Tsu_radioButton2
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Checked = true;
-            this.radioButton6.Location = new System.Drawing.Point(6, 51);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(113, 21);
-            this.radioButton6.TabIndex = 3;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "P2P地震情報API";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.Tsu_radioButton2.AutoSize = true;
+            this.Tsu_radioButton2.Checked = true;
+            this.Tsu_radioButton2.Location = new System.Drawing.Point(6, 51);
+            this.Tsu_radioButton2.Name = "Tsu_radioButton2";
+            this.Tsu_radioButton2.Size = new System.Drawing.Size(113, 21);
+            this.Tsu_radioButton2.TabIndex = 3;
+            this.Tsu_radioButton2.TabStop = true;
+            this.Tsu_radioButton2.Text = "P2P地震情報API";
+            this.Tsu_radioButton2.UseVisualStyleBackColor = true;
             // 
-            // radioButton7
+            // Tsu_radioButton1
             // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(6, 24);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(82, 21);
-            this.radioButton7.TabIndex = 2;
-            this.radioButton7.TabStop = true;
-            this.radioButton7.Text = "DM-D.S.S.";
-            this.radioButton7.UseVisualStyleBackColor = true;
+            this.Tsu_radioButton1.AutoSize = true;
+            this.Tsu_radioButton1.Location = new System.Drawing.Point(6, 24);
+            this.Tsu_radioButton1.Name = "Tsu_radioButton1";
+            this.Tsu_radioButton1.Size = new System.Drawing.Size(82, 21);
+            this.Tsu_radioButton1.TabIndex = 2;
+            this.Tsu_radioButton1.TabStop = true;
+            this.Tsu_radioButton1.Text = "DM-D.S.S.";
+            this.Tsu_radioButton1.UseVisualStyleBackColor = true;
             // 
-            // groupBox6
+            // Eq_API_SelectBox
             // 
-            this.groupBox6.Controls.Add(this.radioButton19);
-            this.groupBox6.Controls.Add(this.radioButton5);
-            this.groupBox6.Controls.Add(this.radioButton4);
-            this.groupBox6.Location = new System.Drawing.Point(238, 51);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(211, 133);
-            this.groupBox6.TabIndex = 1;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "地震情報";
+            this.Eq_API_SelectBox.Controls.Add(this.Eq_radioButton3);
+            this.Eq_API_SelectBox.Controls.Add(this.Eq_radioButton2);
+            this.Eq_API_SelectBox.Controls.Add(this.Eq_radioButton1);
+            this.Eq_API_SelectBox.Location = new System.Drawing.Point(238, 51);
+            this.Eq_API_SelectBox.Name = "Eq_API_SelectBox";
+            this.Eq_API_SelectBox.Size = new System.Drawing.Size(211, 133);
+            this.Eq_API_SelectBox.TabIndex = 1;
+            this.Eq_API_SelectBox.TabStop = false;
+            this.Eq_API_SelectBox.Text = "地震情報";
             // 
-            // radioButton19
+            // Eq_radioButton3
             // 
-            this.radioButton19.AutoSize = true;
-            this.radioButton19.Location = new System.Drawing.Point(6, 78);
-            this.radioButton19.Name = "radioButton19";
-            this.radioButton19.Size = new System.Drawing.Size(51, 21);
-            this.radioButton19.TabIndex = 2;
-            this.radioButton19.Text = "AXIS";
-            this.radioButton19.UseVisualStyleBackColor = true;
+            this.Eq_radioButton3.AutoSize = true;
+            this.Eq_radioButton3.Location = new System.Drawing.Point(6, 78);
+            this.Eq_radioButton3.Name = "Eq_radioButton3";
+            this.Eq_radioButton3.Size = new System.Drawing.Size(51, 21);
+            this.Eq_radioButton3.TabIndex = 2;
+            this.Eq_radioButton3.Text = "AXIS";
+            this.Eq_radioButton3.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // Eq_radioButton2
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Checked = true;
-            this.radioButton5.Location = new System.Drawing.Point(6, 51);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(113, 21);
-            this.radioButton5.TabIndex = 1;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "P2P地震情報API";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.Eq_radioButton2.AutoSize = true;
+            this.Eq_radioButton2.Checked = true;
+            this.Eq_radioButton2.Location = new System.Drawing.Point(6, 51);
+            this.Eq_radioButton2.Name = "Eq_radioButton2";
+            this.Eq_radioButton2.Size = new System.Drawing.Size(113, 21);
+            this.Eq_radioButton2.TabIndex = 1;
+            this.Eq_radioButton2.TabStop = true;
+            this.Eq_radioButton2.Text = "P2P地震情報API";
+            this.Eq_radioButton2.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // Eq_radioButton1
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(6, 24);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(82, 21);
-            this.radioButton4.TabIndex = 0;
-            this.radioButton4.Text = "DM-D.S.S.";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.Eq_radioButton1.AutoSize = true;
+            this.Eq_radioButton1.Location = new System.Drawing.Point(6, 24);
+            this.Eq_radioButton1.Name = "Eq_radioButton1";
+            this.Eq_radioButton1.Size = new System.Drawing.Size(82, 21);
+            this.Eq_radioButton1.TabIndex = 0;
+            this.Eq_radioButton1.Text = "DM-D.S.S.";
+            this.Eq_radioButton1.UseVisualStyleBackColor = true;
             // 
-            // groupBox5
+            // EEW_API_SelectBox
             // 
-            this.groupBox5.Controls.Add(this.radioButton18);
-            this.groupBox5.Controls.Add(this.radioButton3);
-            this.groupBox5.Controls.Add(this.radioButton2);
-            this.groupBox5.Controls.Add(this.radioButton1);
-            this.groupBox5.Location = new System.Drawing.Point(6, 51);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(211, 133);
-            this.groupBox5.TabIndex = 0;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "緊急地震速報";
+            this.EEW_API_SelectBox.Controls.Add(this.EEW_radioButton4);
+            this.EEW_API_SelectBox.Controls.Add(this.EEW_radioButton3);
+            this.EEW_API_SelectBox.Controls.Add(this.EEW_radioButton2);
+            this.EEW_API_SelectBox.Controls.Add(this.EEW_radioButton1);
+            this.EEW_API_SelectBox.Location = new System.Drawing.Point(6, 51);
+            this.EEW_API_SelectBox.Name = "EEW_API_SelectBox";
+            this.EEW_API_SelectBox.Size = new System.Drawing.Size(211, 133);
+            this.EEW_API_SelectBox.TabIndex = 0;
+            this.EEW_API_SelectBox.TabStop = false;
+            this.EEW_API_SelectBox.Text = "緊急地震速報";
             // 
-            // radioButton18
+            // EEW_radioButton4
             // 
-            this.radioButton18.AutoSize = true;
-            this.radioButton18.Location = new System.Drawing.Point(6, 105);
-            this.radioButton18.Name = "radioButton18";
-            this.radioButton18.Size = new System.Drawing.Size(51, 21);
-            this.radioButton18.TabIndex = 3;
-            this.radioButton18.Text = "AXIS";
-            this.radioButton18.UseVisualStyleBackColor = true;
+            this.EEW_radioButton4.AutoSize = true;
+            this.EEW_radioButton4.Location = new System.Drawing.Point(6, 105);
+            this.EEW_radioButton4.Name = "EEW_radioButton4";
+            this.EEW_radioButton4.Size = new System.Drawing.Size(51, 21);
+            this.EEW_radioButton4.TabIndex = 3;
+            this.EEW_radioButton4.Text = "AXIS";
+            this.EEW_radioButton4.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // EEW_radioButton3
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(6, 78);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(75, 21);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "WolfxAPI";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.EEW_radioButton3.AutoSize = true;
+            this.EEW_radioButton3.Checked = true;
+            this.EEW_radioButton3.Location = new System.Drawing.Point(6, 78);
+            this.EEW_radioButton3.Name = "EEW_radioButton3";
+            this.EEW_radioButton3.Size = new System.Drawing.Size(75, 21);
+            this.EEW_radioButton3.TabIndex = 2;
+            this.EEW_radioButton3.TabStop = true;
+            this.EEW_radioButton3.Text = "WolfxAPI";
+            this.EEW_radioButton3.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // EEW_radioButton2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 51);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(189, 21);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "DM-D.S.S. 警報区分+WolfxAPI";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.EEW_radioButton2.AutoSize = true;
+            this.EEW_radioButton2.Location = new System.Drawing.Point(6, 51);
+            this.EEW_radioButton2.Name = "EEW_radioButton2";
+            this.EEW_radioButton2.Size = new System.Drawing.Size(189, 21);
+            this.EEW_radioButton2.TabIndex = 1;
+            this.EEW_radioButton2.Text = "DM-D.S.S. 警報区分+WolfxAPI";
+            this.EEW_radioButton2.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // EEW_radioButton1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 24);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(133, 21);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.Text = "DM-D.S.S. 予報区分";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.EEW_radioButton1.AutoSize = true;
+            this.EEW_radioButton1.Location = new System.Drawing.Point(6, 24);
+            this.EEW_radioButton1.Name = "EEW_radioButton1";
+            this.EEW_radioButton1.Size = new System.Drawing.Size(133, 21);
+            this.EEW_radioButton1.TabIndex = 0;
+            this.EEW_radioButton1.Text = "DM-D.S.S. 予報区分";
+            this.EEW_radioButton1.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -731,14 +731,14 @@
             this.groupBox10.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            this.API_SelectsBox.ResumeLayout(false);
+            this.API_SelectsBox.PerformLayout();
+            this.Tsunami_API_SelectBox.ResumeLayout(false);
+            this.Tsunami_API_SelectBox.PerformLayout();
+            this.Eq_API_SelectBox.ResumeLayout(false);
+            this.Eq_API_SelectBox.PerformLayout();
+            this.EEW_API_SelectBox.ResumeLayout(false);
+            this.EEW_API_SelectBox.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabControl2.ResumeLayout(false);
@@ -754,9 +754,9 @@
 
         }
 
-        private System.Windows.Forms.RadioButton radioButton19;
+        private System.Windows.Forms.RadioButton Eq_radioButton3;
 
-        private System.Windows.Forms.RadioButton radioButton18;
+        private System.Windows.Forms.RadioButton EEW_radioButton4;
 
         #endregion
 
@@ -778,21 +778,21 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.GroupBox API_SelectsBox;
+        private System.Windows.Forms.GroupBox Tsunami_API_SelectBox;
+        private System.Windows.Forms.RadioButton Tsu_radioButton2;
+        private System.Windows.Forms.RadioButton Tsu_radioButton1;
+        private System.Windows.Forms.GroupBox Eq_API_SelectBox;
+        private System.Windows.Forms.RadioButton Eq_radioButton2;
+        private System.Windows.Forms.RadioButton Eq_radioButton1;
+        private System.Windows.Forms.GroupBox EEW_API_SelectBox;
+        private System.Windows.Forms.RadioButton EEW_radioButton3;
+        private System.Windows.Forms.RadioButton EEW_radioButton2;
+        private System.Windows.Forms.RadioButton EEW_radioButton1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton radioButton11;
-        private System.Windows.Forms.RadioButton radioButton10;
+        private System.Windows.Forms.RadioButton is_WebSc;
+        private System.Windows.Forms.RadioButton is_JsonAPI;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabControl tabControl3;
         private System.Windows.Forms.TabPage tabPage12;

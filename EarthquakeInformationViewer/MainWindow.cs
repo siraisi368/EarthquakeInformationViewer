@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EarthquakeInformationViewer
-{ 
+{
     public partial class MainWindow : Form
     {
         public MainWindow()
@@ -493,6 +493,7 @@ namespace EarthquakeInformationViewer
         private readonly HttpClient EqClient = new HttpClient();
 
         string eqJText;
+        int lastMaxIntent;
         private async void P2PQTimer_Tick(object sender, EventArgs e)
         {
             P2PQTimer.Interval = 10000;
@@ -507,12 +508,42 @@ namespace EarthquakeInformationViewer
             {
                 if (Properties.Settings.Default.is_eqcolor)
                 {
-                    WriteInformationToDisplay(ColorScheme[eqAPI[0].earthquake.maxScale], null, $"{eqAPI[0].earthquake.time}発生", eqAPI[0].earthquake.hypocenter.name, p2p.IntenToShindo(eqAPI[0].earthquake.maxScale), (float)eqAPI[0].earthquake.hypocenter.magnitude, eqAPI[0].earthquake.hypocenter.depth);
+                    switch (eqAPI[0].issue.type)
+                    {
+                        case "ScalePrompt":
+                            WriteInformationToDisplay(ColorScheme[eqAPI[0].earthquake.maxScale], null, $"{eqAPI[0].earthquake.time}発生", "調査中", p2p.IntenToShindo(eqAPI[0].earthquake.maxScale), (float)eqAPI[0].earthquake.hypocenter.magnitude, eqAPI[0].earthquake.hypocenter.depth);
+                            lastMaxIntent = eqAPI[0].earthquake.maxScale;
+                            break;
+                        case "Destination":
+                            WriteInformationToDisplay(ColorScheme[lastMaxIntent], null, $"{eqAPI[0].earthquake.time}発生", eqAPI[0].earthquake.hypocenter.name, p2p.IntenToShindo(lastMaxIntent), (float)eqAPI[0].earthquake.hypocenter.magnitude, eqAPI[0].earthquake.hypocenter.depth);
+                            break;
+                        case "DetailScale":
+                            WriteInformationToDisplay(ColorScheme[eqAPI[0].earthquake.maxScale], null, $"{eqAPI[0].earthquake.time}発生", eqAPI[0].earthquake.hypocenter.name, p2p.IntenToShindo(eqAPI[0].earthquake.maxScale), (float)eqAPI[0].earthquake.hypocenter.magnitude, eqAPI[0].earthquake.hypocenter.depth);
+                            break;
+                        default:
+                            WriteInformationToDisplay(ColorScheme[eqAPI[0].earthquake.maxScale], null, $"{eqAPI[0].earthquake.time}発生", eqAPI[0].earthquake.hypocenter.name, p2p.IntenToShindo(eqAPI[0].earthquake.maxScale), (float)eqAPI[0].earthquake.hypocenter.magnitude, eqAPI[0].earthquake.hypocenter.depth);
+                            break;
+                    }
                     Status.eqState = "View";
                 }
                 else
                 {
-                    WriteInformationToDisplay(GeneralInfoColor, null, $"{eqAPI[0].earthquake.time}発生", eqAPI[0].earthquake.hypocenter.name, p2p.IntenToShindo(eqAPI[0].earthquake.maxScale), (float)eqAPI[0].earthquake.hypocenter.magnitude, eqAPI[0].earthquake.hypocenter.depth);
+                    switch (eqAPI[0].issue.type)
+                    {
+                        case "ScalePrompt":
+                            WriteInformationToDisplay(GeneralInfoColor, null, $"{eqAPI[0].earthquake.time}発生", "調査中", p2p.IntenToShindo(eqAPI[0].earthquake.maxScale), (float)eqAPI[0].earthquake.hypocenter.magnitude, eqAPI[0].earthquake.hypocenter.depth);
+                            lastMaxIntent = eqAPI[0].earthquake.maxScale;
+                            break;
+                        case "Destination":
+                            WriteInformationToDisplay(GeneralInfoColor, null, $"{eqAPI[0].earthquake.time}発生", eqAPI[0].earthquake.hypocenter.name, p2p.IntenToShindo(lastMaxIntent), (float)eqAPI[0].earthquake.hypocenter.magnitude, eqAPI[0].earthquake.hypocenter.depth);
+                            break;
+                        case "DetailScale":
+                            WriteInformationToDisplay(GeneralInfoColor, null, $"{eqAPI[0].earthquake.time}発生", eqAPI[0].earthquake.hypocenter.name, p2p.IntenToShindo(eqAPI[0].earthquake.maxScale), (float)eqAPI[0].earthquake.hypocenter.magnitude, eqAPI[0].earthquake.hypocenter.depth);
+                            break;
+                        default:
+                            WriteInformationToDisplay(GeneralInfoColor, null, $"{eqAPI[0].earthquake.time}発生", eqAPI[0].earthquake.hypocenter.name, p2p.IntenToShindo(eqAPI[0].earthquake.maxScale), (float)eqAPI[0].earthquake.hypocenter.magnitude, eqAPI[0].earthquake.hypocenter.depth);
+                            break;
+                    }
                     Status.eqState = "View";
                 }
             }
