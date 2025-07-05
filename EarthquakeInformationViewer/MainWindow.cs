@@ -313,8 +313,16 @@ namespace EarthquakeInformationViewer
                     }
                     if (otherInfo != null)
                     {
-                        g.DrawString(otherInfo.Value.Item1, AlertTypeFont, foreColor, 150, 70);
-                        g.DrawString(otherInfo.Value.Item2, AlertTypeFont, foreColor, 150, 90);
+                        if (al_flg == "キャンセル")
+                        {
+                            g.DrawString(otherInfo.Value.Item1, AlertTypeFont, foreColor, 0, 30);
+                            g.DrawString(otherInfo.Value.Item2, AlertTypeFont, foreColor, 0, 50);
+                        }
+                        else
+                        {
+                            g.DrawString(otherInfo.Value.Item1, AlertTypeFont, foreColor, 150, 70);
+                            g.DrawString(otherInfo.Value.Item2, AlertTypeFont, foreColor, 150, 90);
+                        }
                     }
                     if (magnitude != null && magnitude != -1)
                     {
@@ -462,7 +470,7 @@ namespace EarthquakeInformationViewer
 
                     case "キャンセル":
                         Status.eewState = "Cancel";
-                        WriteInformationToDisplay(CancelInfoColor, null, $"緊急地震速報(取り消し) #{rpt_no}", reg, intn, mag, depth);
+                        WriteInformationToDisplay(CancelInfoColor, null, $"緊急地震速報(取り消し) #{rpt_no}", reg,intn, -1, -1,al_flg,rpt_no,("この緊急地震速報は","キャンセルされました"));
                         break;
 
                     case null:
